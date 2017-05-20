@@ -13,8 +13,62 @@ var mongoose = require('express-mongoose');
 
 var app = express();
 
+// 创建 loginapp 数据库
 mongoose.promise = global.promise;
 var db = mongoose.connect('mongodb://localhost/loginapp');
 
-var routes = require('routes/index');
+// 引入路由
+var index = require('routes/index');
 var users = require('routes/users');
+
+// 渲染引擎
+app.set('views',path.join(__dirname,'views'));
+app.set('view engine','jade');
+
+// 使用中间件
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(cookieParser());
+
+// 设置静态文件
+app.use(express.static(path.join(__dirname,'public')));
+
+// 会话
+app.use(session({
+  secret: 'secret',
+  saveUninitialized: true,
+  resave: true
+}))
+
+// express-validator 它验证请求的body, params, query, headers 和 cookies
+// 并且如果任何配置的验证规则失败,返回一个错误的响应;
+app.use(expressValidator({
+  errorFormatter: function(param, msg, value) {
+      var namespace = param.split('.')
+      , root    = namespace.shift()
+      , formParam = root;
+
+    while(namespace.length) {
+      formParam += '[' + namespace.shift() + ']';
+    }
+    return {
+      param : formParam,
+      msg   : msg,
+      value : value
+    };
+  }
+}));
+
+// connect flash
+app.use(flash());
+
+// 设置全局变量
+app.use(function(req,res,next){
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  next();
+})
+
+app.use('/',index);
+app.use('/users',users);
