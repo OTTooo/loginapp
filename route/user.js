@@ -4,14 +4,14 @@ var router = express.Router();
 // 登录
 router.get('/register',function(req,res) {
   res.render('register',{
-    title: 'register'
+    title: '注册'
   });
 });
 
 // 注册
 router.get('/login',function(req,res) {
   res.render('login', {
-    title: 'login'
+    title: '登录'
   });
 });
 
