@@ -9,7 +9,7 @@ var session = require('express-session');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var mongo = require('mongodb');
-var mongoose = require('express-mongoose');
+var mongoose = require('mongoose');
 
 var app = express();
 
@@ -18,8 +18,8 @@ mongoose.promise = global.promise;
 var db = mongoose.connect('mongodb://localhost/loginapp');
 
 // 引入路由
-var index = require('routes/index');
-var users = require('routes/users');
+var index = require('./routes/index');
+var users = require('./routes/users');
 
 // 渲染引擎
 app.set('views',path.join(__dirname,'views'));
