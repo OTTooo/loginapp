@@ -75,7 +75,7 @@ app.use('/',index);
 app.use('/user',user);
 
 // 设置监听端口
-app.set('port',(process.env.PORT || 3000));
+app.set('port',(process.env.PORT || 3001));
 
 app.listen(app.get('port'),function(){
   console.log('Server start on port ' + app.get('port'));
