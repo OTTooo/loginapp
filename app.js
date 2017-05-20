@@ -18,11 +18,11 @@ mongoose.promise = global.promise;
 var db = mongoose.connect('mongodb://localhost/loginapp');
 
 // 引入路由
-var index = require('./routes/index');
-var users = require('./routes/users');
+var index = require('./route/index');
+var user = require('./route/user');
 
 // 渲染引擎
-app.set('views',path.join(__dirname,'views'));
+app.set('views',path.join(__dirname,'view/page/'));
 app.set('view engine','jade');
 
 // 使用中间件
@@ -72,7 +72,7 @@ app.use(function(req,res,next){
 
 // 路径划分
 app.use('/',index);
-app.use('/users',users);
+app.use('/user',user);
 
 // 设置监听端口
 app.set('port',(process.env.PORT || 3000));
