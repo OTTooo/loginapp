@@ -1,6 +1,9 @@
 extends ../layout
 
 block content
+  if errors
+    each item in errors 
+        .alert.alert-danger #{item.msg}
   form(method="post",action="/user/register")
     .form-group
       label(for='exampleInputEmail1') 用户名

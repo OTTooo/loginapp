@@ -15,14 +15,20 @@ router.post('/register',function(req,res) {
   var password1 = req.body.password1;
   var password2 = req.body.password2;
 
-  // 验证
-  req.checkBody('username','Name is require').notEmpty();
+  // 对表单提交内容进行验证
+  req.checkBody('username','用户名不能为空').notEmpty();
+  req.checkBody('email','邮箱不能为空').notEmpty();
+  req.checkBody('email','请输入正确的邮箱地址').isEmail();
+  req.checkBody('password1','密码不能为空').notEmpty();
+  req.checkBody('password2','密码不一致').equals(req.body.password1);
 
   var errors = req.validationErrors();
   if (errors) {
-    console.log('YES');
+    res.render('register',{
+      errors:errors
+    })
   } else {
-    console.log('NO');
+    console.log('pass');
   }
 });
 
