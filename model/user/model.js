@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var bcryptjs = require('bcryptjs');
+var Schema = mongoose.Schema;
 
 var UserSchema = mongoose.Schema({
   username: {
@@ -12,10 +13,4 @@ var UserSchema = mongoose.Schema({
   password: {
     type: String
   }
-})
-
-var User = mongoose.model('User',UserSchema);
-
-exports.createUser = function(newUser,callback) {
-  
-}
+});
