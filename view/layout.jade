@@ -3,5 +3,21 @@ html
   head
     include ./include/head
   body
-    block content
+      .container-narrow
+        .masthead
+          ul.nav.nav-pills.pull-right
+            li
+              a(href='/') 首页
+            li
+              a(href='/user/login') 登录
+            li
+              a(href='/user/register') 注册
+            li
+              a(href="/user/logout") 注销
+          h3.muted #{title}
+        hr
+        block content
+        hr
+        .footer
+          p © Company 2017
     include ./include/bodyFooter
