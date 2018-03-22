@@ -10,7 +10,7 @@ router.get('/register',function(req,res) {
 
 // 注册提交
 router.post('/register',function(req,res) {
-  var username = req.body.username;
+  var username = req.body.username;z
   var email = req.body.email;
   var password1 = req.body.password1;
   var password2 = req.body.password2;
@@ -39,5 +39,10 @@ router.get('/login',function(req,res) {
   });
 });
 
-
-module.exports = router
+// 注销
+router.get('/logout',function(req,res) {
+  res.render('logout',{
+    title: '已注销'
+  });
+})
+module.exports = router;
