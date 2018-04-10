@@ -36,6 +36,7 @@ module.exports = {
         // 这里没有提供密码，因为已经配置了ssh免密码登录
       user : 'root', // 服务器用户名
       host : '47.106.121.182',// 服务器地址
+      port : 3001,   
         // 服务器（Server）需要获取GitHub上的仓库
         // 所以要配置Deploy keys
       ref  : 'origin/master',// 仓库名称，没有更改过的话默认即可
