@@ -16,6 +16,7 @@ var app = express();
 // 创建 loginapp 数据库
 mongoose.promise = global.promise;
 var db = mongoose.connect('mongodb://localhost/loginapp');
+var db = mongoose.connect('mongodb://localhost/loginapp');
 
 // 引入路由
 var index = require('./route/index');
